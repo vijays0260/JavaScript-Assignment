@@ -56,11 +56,9 @@ var obj1 = {};
 
 }
  console.log(newArray);
-/*
- fs.writeFile( "aggregate.json", JSON.stringify( Cont_Array ), "utf8", function(err) {
- if (err) throw err;
- });
-*/
+
+ fs.writeFile( "aggregate.json", JSON.stringify( newArray ));
+
  csvtojson(population,"Population.json");
  csvtojson(gdp,"GDP.json");
  csvtojson(ppp,"PPP.json");
@@ -68,7 +66,7 @@ var obj1 = {};
  function csvtojson(index,filename){
  newArray=[];
  var i=0,j=0;
- for (i = 1; i < row-2; i++) {
+ for (i = 1; i < row-3; i++) {
     var newObj = {};
     var newLine=myArray[i].split(',');
 
@@ -80,10 +78,12 @@ var obj1 = {};
       newObj[key1] = value1;
       newArray.push(newObj);
 
-}
-   console.log( newArray);
-    fs.writeFile(filename, JSON.stringify( arrayValue ), "utf8", function(err) {
-    if (err) throw err;
+};
+
+   newArray.sort(function(a,b){
+ return parseFloat(b[key1])-parseFloat(a[key1]);
 });
+console.log( newArray);
+    fs.writeFile(filename, JSON.stringify( newArray ));
 
 }
