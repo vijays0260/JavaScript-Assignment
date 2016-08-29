@@ -1,13 +1,15 @@
 //console.log('Hello');
 var fs=require('fs');
 
-var f=fs.readFileSync('Table_1.3.csv', 'utf8',function(err, data)  {
-  if (err) throw err;
+fs.readFileSync('Table_1.3.csv', "utf-8",function(err,contents)  {
+  if (err)
+  { throw err;
+  }
   //console.log(data);
-console.log(data.toString());
+
 //console.log(f);
-var row=data.split("\n");
-//console.log(row);
+ row=contents.split("\n");
+console.log(row);
 });
 /*
 for(var i=0;i<row.length;i++){
